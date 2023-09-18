@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     String st5 =
         '지난 밤의 트라우마 다 묻고\n목숨 바쳐 달려올 새 출발 하는 왕복선\n변할래 전보다는 더욱더\n좋은 사람 더욱더, 더 나은 사람 더욱더\n\n';
     String st6 =
-        '아침 이슬을 맞고 (내 안에)\n내 안에 분노 과거에 묻고\nFor life, do it away, away, away\n\n';
+        '아침 이슬을 맞고 (내 안에)\n내 안에 분노 과거에 묻고\nFor life, do it away, away, away \n\n';
 
     return MaterialApp(
       home: Scaffold(
