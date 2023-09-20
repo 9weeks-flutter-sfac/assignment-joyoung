@@ -64,35 +64,53 @@ class MyApp extends StatelessWidget {
         ]),
       ),
       bottomSheet: Container(
-        child: ListTile(
-          leading: ClipRRect(
-            child: Image.asset('images/music_come_with_me.png'),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(bottom: 3),
-            child: Text(
-              'come with me',
-              style: TextStyle(color: Colors.white),
+        child: Column(
+          children: [
+            ListTile(
+              leading: ClipRRect(
+                child: Image.asset('images/music_come_with_me.png'),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 3),
+                child: Text(
+                  'come with me',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              subtitle: Text(
+                'day6',
+                style: TextStyle(color: Colors.white60),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(Icons.play_arrow, color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.pause,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
-          ),
-          subtitle: Text(
-            'day6',
-            style: TextStyle(color: Colors.white60),
-          ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.play_arrow, color: Colors.white),
+            Flexible(
+              child: Container(
+                height: 1,
+                width: 500,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.white, Colors.grey, Colors.grey]),
+                  ),
+                ),
               ),
-              Icon(
-                Icons.pause,
-                color: Colors.white,
-              ),
-            ],
-          ),
+            )
+          ],
         ),
         height: 70,
         color: Colors.grey[850],
