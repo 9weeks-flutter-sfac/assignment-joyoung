@@ -22,6 +22,7 @@ class ContactTile extends StatelessWidget {
           Text(
             name,
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            maxLines: 2,
           ),
         ]),
         subtitle: Row(
@@ -39,6 +40,7 @@ class ContactTile extends StatelessWidget {
               TextSpan(
                 text: sub,
                 style: TextStyle(color: Colors.grey),
+                
               )
             ])),
           ],
