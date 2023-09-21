@@ -38,7 +38,12 @@ class _MyWidgetState extends State<MyApp> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text('분식왕 이테디 주문하기')),
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          title: Text('분식왕 이테디 주문하기')),
       floatingActionButton: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape:
