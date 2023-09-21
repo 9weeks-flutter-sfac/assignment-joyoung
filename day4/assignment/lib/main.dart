@@ -1,6 +1,3 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,11 +6,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print('빌드');
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -26,6 +21,29 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InkWell(
+                child: Text('잉크웰'),
+                onTap: () {
+                  // showDialog(
+                  //   context: context,
+                  //   builder: (BuildContext context) {
+                  //     return AlertDialog(
+                  //       title: Text('Hello'),
+                  //       content:
+                  //           Text('This is a simple alert dialog with "Hello".'),
+                  //       actions: [
+                  //         TextButton(
+                  //           onPressed: () {
+                  //             Navigator.of(context).pop();
+                  //           },
+                  //           child: Text('OK'),
+                  //         ),
+                  //       ],
+                  //     );
+                  //   },
+                  // );
+                },
+              ),
+               InkWell(
                 child: Text('잉크웰'),
                 onTap: () {
                   showDialog(
@@ -51,6 +69,9 @@ class MyApp extends StatelessWidget {
               GestureDetector(
                 child: Text('GestrueDetector'),
                 onTap: () {
+                  // showResultDialog(context, "This is the result message");
+                  print('asd');
+
                   // showDialog(context: context, builder: builder)
                 },
               ),
@@ -66,7 +87,6 @@ class MyApp extends StatelessWidget {
                 cursorColor: Colors.red,
                 onChanged: (value) {
                   print(value);
-                  printhelow();
                 },
                 decoration: InputDecoration(
                   label: Text('이메일 입력'),
@@ -84,28 +104,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void printhelow() {
-  return print('hellow');
-}
+// void printhelow() {
+//   return print('hellow');
+// }
 
-void example() {}
-
-showResultDialog(BuildContext context, var result) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width / 2,
-          height: 150,
-          child: Center(
-              child: Text(
-            "$result",
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          )),
-        ),
-      );
-    },
-  );
-}
+// void example() {}
