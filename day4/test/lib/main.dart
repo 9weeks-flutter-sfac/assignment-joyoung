@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int num = 0;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -34,42 +33,39 @@ class HomePage extends StatelessWidget {
             InkWell(
               child: Text('잉크웰'),
               onTap: () {
-                num += 1;
-                showResultDialog(context, num);
-                // showDialog(
-                //   context: context,
-                //   builder: (BuildContext context) {
-                //     return AlertDialog(
-                //       title: Text('Hello122'),
-                //       content:
-                //           Text('This is a simple alert dialog with "Hello".'),
-                //       actions: [
-                //         TextButton(
-                //           onPressed: () {
-                //             Navigator.of(context).pop();
-                //           },
-                //           child: Text('OK'),
-                //         ),
-                //       ],
-                //     );
-                //   },
-                // );
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Hello122'),
+                      content:
+                          Text('This is a simple alert dialog with "Hello".'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
             GestureDetector(
               child: Text('GestrueDetector'),
               onTap: () {
-                // showDialog(context: context, builder: builder)
+                showResultDialog(context, "gesture");
               },
             ),
-            OutlinedButton(onPressed: () {}, child: Text('outlined')),
-            ElevatedButton(onPressed: () {}, child: Text('Elevated')),
+            OutlinedButton(onPressed: () {}, child: Text('outlined 버튼')),
+            ElevatedButton(onPressed: () {}, child: Text('Elevated 버튼')),
             TextButton(onPressed: () {}, child: Text('Text 버튼')),
             IconButton(
               onPressed: () {},
               icon: Icon(Icons.abc_sharp),
             ),
-            Icon(Icons.abc_sharp),
             TextField(
               cursorColor: Colors.red,
               onChanged: (value) {

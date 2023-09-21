@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kiosk/menu.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -12,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyApp> {
-  List<String> food = ['asd', 'bsx'];
+  List<String> food = [];
   @override
   Widget build(BuildContext context) {
     showResultDialog(BuildContext context, var result) {
@@ -36,27 +37,103 @@ class _MyWidgetState extends State<MyApp> {
       );
     }
 
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            food.add('bbb');
-            setState(() {});
-          },
-          child: Icon(Icons.chair_alt_outlined),
+    return Scaffold(
+      appBar: AppBar(title: Text('분식왕 이테디 주문하기')),
+      floatingActionButton: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         ),
-        body: Center(
-            child: Column(
+        onPressed: () {
+          food = [];
+          setState(() {});
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            '초기화 하기',
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InkWell(
-              child: Text('잉크웰'),
-              onTap: () {
-                showResultDialog(context, "asdasd");
-              },
+            Text(
+              '주문리스트',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            Text('현재 레벨 $food 입니다'),
+            Text('$food '),
+            Text(
+              '음식',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            Wrap(
+              spacing: 18,
+              children: [
+                Menu(
+                  name: '맥주',
+                  img: 'images/option_beer.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '떡볶이',
+                  img: 'images/option_bokki.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '김밥',
+                  img: 'images/option_kimbap.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '오무라이스',
+                  img: 'images/option_kimbap.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '돈까스',
+                  img: 'images/option_pork_cutlets.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '라면',
+                  img: 'images/option_ramen.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+                Menu(
+                  name: '우동',
+                  img: 'images/option_udon.png',
+                  choice: (name) {
+                    food.add(name);
+                    setState(() {});
+                  },
+                ),
+              ],
+            )
           ],
-        )),
+        ),
       ),
     );
   }
