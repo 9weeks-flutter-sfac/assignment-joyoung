@@ -28,19 +28,30 @@ class MyApp extends StatelessWidget {
               InkWell(
                 child: Text('잉크웰'),
                 onTap: () {
-                  showDialog(context: context, builder: (context) {
-                    return AlertDialog(content: Text('알럿창'), actions: [
-                      FlatButton(child)
-                    ],)
-                  },)
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Hello'),
+                        content:
+                            Text('This is a simple alert dialog with "Hello".'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
               GestureDetector(
                 child: Text('GestrueDetector'),
                 onTap: () {
                   // showDialog(context: context, builder: builder)
-
-                  
                 },
               ),
               OutlinedButton(onPressed: () {}, child: Text('outlined')),
@@ -78,3 +89,23 @@ void printhelow() {
 }
 
 void example() {}
+
+showResultDialog(BuildContext context, var result) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width / 2,
+          height: 150,
+          child: Center(
+              child: Text(
+            "$result",
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          )),
+        ),
+      );
+    },
+  );
+}
