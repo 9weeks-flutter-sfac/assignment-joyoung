@@ -90,26 +90,19 @@ class MyApp extends StatelessWidget {
                     child: Icon(Icons.play_arrow, color: Colors.white),
                   ),
                   Icon(
-                    Icons.pause,
+                    Icons.skip_next,
                     color: Colors.white,
                   ),
                 ],
               ),
             ),
-            Flexible(
-              child: Container(
+            Container(
                 height: 1,
-                width: 500,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [Colors.white, Colors.grey, Colors.grey]),
-                  ),
-                ),
-              ),
-            )
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  width: 120,
+                  color: Colors.white,
+                ))
           ],
         ),
         height: 70,
