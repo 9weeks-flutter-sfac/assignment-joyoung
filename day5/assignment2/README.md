@@ -1,16 +1,9 @@
-# assignment2
+https://sniperfactory.notion.site/5-06ed0645f75742d1a4c5f188f5a982da
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+ScrollController를 활용하여 가장 상단으로 이동하는 기능을 구현합니다.
 
-A few resources to get you started if this is your first Flutter project:
+ 입력된 텍스트 미러링하는 화면을 제작합니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ 다음의 UI를 구성하고 각각의 조건에 맞추어 코딩하시오.
