@@ -192,10 +192,7 @@ class ContactDetailPage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: false,
           toolbarHeight: 100,
-          bottom: PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: Container(),
-          ),
+          bottom: PreferredSize( preferredSize: Size(double.infinity, 200), child: Container(), ),
           flexibleSpace: Container(
               decoration: BoxDecoration(
             image: DecorationImage(
