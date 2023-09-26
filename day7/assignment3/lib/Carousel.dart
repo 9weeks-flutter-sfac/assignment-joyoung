@@ -18,7 +18,7 @@ class _CarouselState extends State<Carousel> {
         options: CarouselOptions(
             height: 200.0,
             autoPlay: true,
-            autoPlayInterval: Duration(milliseconds: 500)),
+            autoPlayInterval: Duration(milliseconds: 2500)),
         items: widget.imgUrl.map((i) {
           return Builder(
             builder: (BuildContext context) {
