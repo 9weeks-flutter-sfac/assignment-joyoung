@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:assignment3/carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -26,9 +27,9 @@ class _MyAppState extends State<MyApp> {
     "https://images.pexels.com/photos/9409823/pexels-photo-9409823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   ];
   int index = 0;
+  bool nextPage = false;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-
   void _onRefresh() async {
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 500));
@@ -48,21 +49,28 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('7일차 과제 1번')),
-      body: SmartRefresher(
-          enablePullDown: true,
-          header: WaterDropHeader(),
-          controller: _refreshController,
-          onRefresh: _onRefresh,
-          child: Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('$index  번 이미지'),
-              Image.network(items[index]),
-            ],
-          ))),
+      appBar: AppBar(title: Text('7일차 과제 ')),
+      floatingActionButton: FloatingActionButton(child: Text('이동') ,onPressed: () {
+        nextPage = !nextPage;
+        setState(() {});
+
+      }),
+      body: nextPage
+          ? Carousel(imgUrl: items)
+          : SmartRefresher(
+              enablePullDown: true,
+              header: WaterDropHeader(),
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('$index  번 이미지'),
+                  Image.network(items[index]),
+                ],
+              ))),
     );
   }
 }
