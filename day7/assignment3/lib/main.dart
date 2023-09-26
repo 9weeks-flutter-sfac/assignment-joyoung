@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
 
   void _onRefresh() async {
     // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(milliseconds: 500));
     // if failed,use refreshFailed()
     int preNumber = index;
     do {
@@ -45,26 +45,15 @@ class _MyAppState extends State<MyApp> {
     _refreshController.refreshCompleted();
   }
 
-  void _onLoading() async {
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    items.add((items.length + 1).toString());
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('7일차 과제 1번')),
       body: SmartRefresher(
           enablePullDown: true,
-          enablePullUp: true,
           header: WaterDropHeader(),
           controller: _refreshController,
           onRefresh: _onRefresh,
-          onLoading: _onLoading,
           child: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
