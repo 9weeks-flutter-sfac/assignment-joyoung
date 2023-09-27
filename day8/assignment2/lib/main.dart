@@ -22,8 +22,14 @@ class _MyAppState extends State<MyApp> {
   var data = '';
   List<dynamic> dogImg = [];
 
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  Connectivity _connectivity = Connectivity();
+  bool networkCheck = true;
+
   Future<dynamic> getData() async {
-    print('겟 데이타 실행');
+    print('강아지 사진을 받아오는 겟 데이타 실행');
 
     var dio = Dio();
     var res = await dio.get(
@@ -31,13 +37,6 @@ class _MyAppState extends State<MyApp> {
     );
     // print(res.data['body'].runtimeType);
     return res.data['body'];
-  }
-
-  void handleDogImagePost() async {
-    dogImg = await getData();
-    print(dogImg ?? " 값없음");
-
-    setState(() {});
   }
 
   Future<dynamic> postData() async {
@@ -78,13 +77,17 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void handleDogImagePost() async {
+    dogImg = await getData();
+    print(dogImg ?? " 개의 이미지를 받아오지 못했습니다");
+
+    setState(() {});
+  }
+
   void handleOnpressed() async {
     data = await postData();
     setState(() {});
   }
-
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
 
   void _onRefresh() async {
     // monitor network fetch
@@ -103,9 +106,6 @@ class _MyAppState extends State<MyApp> {
     if (mounted) setState(() {});
     _refreshController.loadComplete();
   }
-
-  final Connectivity _connectivity = Connectivity();
-  bool networkCheck = true;
 
   void checkConnectivityWifi() async {
     //wifi, 셀룰러, None 셋 중 하나의 status를 가져오는 변수
@@ -162,7 +162,7 @@ class _MyAppState extends State<MyApp> {
                                   ],
                                 ),
                               )),
-                          dogImg != null
+                          dogImg.isNotEmpty
                               ? Wrap(
                                   children: dogImg
                                       .map(
@@ -192,9 +192,8 @@ class _MyAppState extends State<MyApp> {
                                                     ),
                                                   ),
                                                   Center(
-                                                      child: Text(
-                                                    '${e['msg']}'
-                                                  )),
+                                                      child:
+                                                          Text('${e['msg']}')),
                                                   Transform.scale(
                                                       scaleX: -1,
                                                       child: Icon(Icons.chat))
@@ -204,22 +203,28 @@ class _MyAppState extends State<MyApp> {
                                       )
                                       .toList(),
                                 )
-                              : SizedBox(
-                                  width: 200.0,
-                                  height: 100.0,
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.red,
-                                    highlightColor: Colors.yellow,
-                                    child: Text(
-                                      'Shimmer',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 40.0,
-                                        fontWeight: FontWeight.bold,
+                              : Wrap(children: [
+                                  SizedBox(
+                                    width: 200.0,
+                                    height: 100.0,
+                                    child: Shimmer.fromColors(
+                                      baseColor: Colors.red,
+                                      highlightColor: Colors.yellow,
+                                      child: Container(
+                                        width: 100,
+                                        height: 200,
+                                        child: Text(
+                                          'Shimmeddddr',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 40.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                ]),
                         ],
                       ),
                     ]),
