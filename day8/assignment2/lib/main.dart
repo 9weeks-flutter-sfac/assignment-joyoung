@@ -118,6 +118,9 @@ class _MyAppState extends State<MyApp> {
       networkCheck = false;
       setState(() {});
     } else {
+      networkCheck = true;
+      setState(() {});
+
       print('네트워크 연결 되었음');
     }
   }
@@ -140,83 +143,86 @@ class _MyAppState extends State<MyApp> {
             enablePullDown: true,
             header: WaterDropHeader(),
             child: Center(
-              child: Wrap(children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          handleOnpressed();
-                        },
-                        child: Expanded(
-                          child: Column(
-                            children: [
-                              Text('8일차 1번 과제 버튼'),
-                              Text(data),
-                            ],
-                          ),
-                        )),
-                    dogImg != null
-                        ? Wrap(
-                            children: dogImg
-                                .map(
-                                  (e) => Card(
-                                    child: Container(
-                                      height: 150,
-                                      padding: EdgeInsets.all(5),
-                                      width: 150,
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: Center(
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                      width: 140,
-                                                      height: 130,
-                                                      fit: BoxFit.cover,
-                                                      '${e['url']}'),
-                                                ),
-                                              ),
-                                            ),
-                                            Center(
-                                                child: Text(
-                                              '강아지',
-                                            )),
-                                            Transform.scale(
-                                                scaleX: -1,
-                                                child: Icon(Icons.chat))
-                                          ]),
-                                    ),
-                                  ), // e[msg] 대신 e['msg'] 사용
-                                )
-                                .toList(),
-                          )
-                        : SizedBox(
-                            width: 200.0,
-                            height: 100.0,
-                            child: Shimmer.fromColors(
-                              baseColor: Colors.red,
-                              highlightColor: Colors.yellow,
-                              child: Text(
-                                'Shimmer',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 40.0,
-                                  fontWeight: FontWeight.bold,
+              child: !networkCheck
+                  ? Center(child: Text('인터넷을 연결 해주세요'))
+                  : Wrap(children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                handleOnpressed();
+                              },
+                              child: Expanded(
+                                child: Column(
+                                  children: [
+                                    Text('8일차 1번 과제 버튼'),
+                                    Text(data),
+                                  ],
                                 ),
-                              ),
-                            ),
-                          ),
-                  ],
-                ),
-              ]),
+                              )),
+                          dogImg != null
+                              ? Wrap(
+                                  children: dogImg
+                                      .map(
+                                        (e) => Card(
+                                          child: Container(
+                                            height: 150,
+                                            padding: EdgeInsets.all(5),
+                                            width: 150,
+                                            child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Center(
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                            width: 140,
+                                                            height: 130,
+                                                            fit: BoxFit.cover,
+                                                            '${e['url']}'),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Center(
+                                                      child: Text(
+                                                    '강아지',
+                                                  )),
+                                                  Transform.scale(
+                                                      scaleX: -1,
+                                                      child: Icon(Icons.chat))
+                                                ]),
+                                          ),
+                                        ), // e[msg] 대신 e['msg'] 사용
+                                      )
+                                      .toList(),
+                                )
+                              : SizedBox(
+                                  width: 200.0,
+                                  height: 100.0,
+                                  child: Shimmer.fromColors(
+                                    baseColor: Colors.red,
+                                    highlightColor: Colors.yellow,
+                                    child: Text(
+                                      'Shimmer',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 40.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                        ],
+                      ),
+                    ]),
             ),
           )),
     );
