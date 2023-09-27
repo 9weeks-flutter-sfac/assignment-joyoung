@@ -193,7 +193,7 @@ class _MyAppState extends State<MyApp> {
                                                   ),
                                                   Center(
                                                       child: Text(
-                                                    '강아지',
+                                                    '${e['msg']}'
                                                   )),
                                                   Transform.scale(
                                                       scaleX: -1,
