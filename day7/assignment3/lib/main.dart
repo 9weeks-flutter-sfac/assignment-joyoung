@@ -38,7 +38,6 @@ class _MyAppState extends State<MyApp> {
     do {
       int randomNumber = Random().nextInt(4) + 1;
       preNumber = randomNumber;
-      ;
     } while (index == preNumber);
 
     index = preNumber;
@@ -62,15 +61,14 @@ class _MyAppState extends State<MyApp> {
               header: WaterDropHeader(),
               controller: _refreshController,
               onRefresh: _onRefresh,
-              child: Center(
-                  child: Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('$index  번 이미지'),
-                  Image.network(items[index]),
+              Text('$index  번 이미지'),
+              Image.network(items[index]),
                 ],
-              ))),
+              )),
     );
   }
 }
