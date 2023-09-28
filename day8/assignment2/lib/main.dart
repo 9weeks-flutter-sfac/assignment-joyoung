@@ -66,7 +66,6 @@ class _MyAppState extends State<MyApp> {
       }
     }
   }
- 
 
   Future<dynamic> getData() async {
     print('강아지 사진을 받아오는 겟 데이타 실행');
@@ -113,6 +112,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   void checkConnectivityWifi() async {
+    networkCheck = false;
+    setState(() {});
+
+    await Future.delayed(Duration(milliseconds: 2000));
+
     //wifi, 셀룰러, None 셋 중 하나의 status를 가져오는 변수
     ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
@@ -149,15 +153,15 @@ class _MyAppState extends State<MyApp> {
             header: WaterDropHeader(),
             child: !networkCheck
                 ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                     SpinKitThreeInOut(color: Colors.cyan, size: 50),
-                    Text('인터넷을 연결 해주세요'),
-                  ],
-                )
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SpinKitThreeInOut(color: Colors.cyan, size: 50),
+                      Text('인터넷을 연결을 확인합니다'),
+                    ],
+                  )
                 : Center(
-                  child: Wrap( children: [
+                    child: Wrap(children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -204,10 +208,15 @@ class _MyAppState extends State<MyApp> {
                                                     ),
                                                   ),
                                                   Padding(
-                                                    padding: const EdgeInsets.all(3.0),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            3.0),
                                                     child: Center(
-                                                        child:
-                                                            Text('${e['msg']}' ,style: TextStyle(fontSize: 11),)  ),
+                                                        child: Text(
+                                                      '${e['msg']}',
+                                                      style: TextStyle(
+                                                          fontSize: 11),
+                                                    )),
                                                   ),
                                                   Transform.scale(
                                                       scaleX: -1,
@@ -240,7 +249,7 @@ class _MyAppState extends State<MyApp> {
                         ],
                       ),
                     ]),
-                ),
+                  ),
           )),
     );
   }
