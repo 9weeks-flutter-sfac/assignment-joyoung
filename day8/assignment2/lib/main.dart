@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:math';
@@ -27,17 +28,6 @@ class _MyAppState extends State<MyApp> {
 
   Connectivity _connectivity = Connectivity();
   bool networkCheck = true;
-
-  Future<dynamic> getData() async {
-    print('강아지 사진을 받아오는 겟 데이타 실행');
-
-    var dio = Dio();
-    var res = await dio.get(
-      "https://sniperfactory.com/sfac/http_day16_dogs",
-    );
-    // print(res.data['body'].runtimeType);
-    return res.data['body'];
-  }
 
   Future<dynamic> postData() async {
     print('포스트 데이타 실행 ');
@@ -76,8 +66,23 @@ class _MyAppState extends State<MyApp> {
       }
     }
   }
+ 
+
+  Future<dynamic> getData() async {
+    print('강아지 사진을 받아오는 겟 데이타 실행');
+
+    var dio = Dio();
+    var res = await dio.get(
+      "https://sniperfactory.com/sfac/http_day16_dogs",
+    );
+    // print(res.data['body'].runtimeType);
+    return res.data['body'];
+  }
 
   void handleDogImagePost() async {
+    dogImg = [];
+    await Future.delayed(Duration(milliseconds: 1000));
+
     dogImg = await getData();
     print(dogImg ?? " 개의 이미지를 받아오지 못했습니다");
 
@@ -142,10 +147,17 @@ class _MyAppState extends State<MyApp> {
             onLoading: _onLoading,
             enablePullDown: true,
             header: WaterDropHeader(),
-            child: Center(
-              child: !networkCheck
-                  ? Center(child: Text('인터넷을 연결 해주세요'))
-                  : Wrap(children: [
+            child: !networkCheck
+                ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                     SpinKitThreeInOut(color: Colors.cyan, size: 50),
+                    Text('인터넷을 연결 해주세요'),
+                  ],
+                )
+                : Center(
+                  child: Wrap( children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -191,9 +203,12 @@ class _MyAppState extends State<MyApp> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Center(
-                                                      child:
-                                                          Text('${e['msg']}')),
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(3.0),
+                                                    child: Center(
+                                                        child:
+                                                            Text('${e['msg']}' ,style: TextStyle(fontSize: 11),)  ),
+                                                  ),
                                                   Transform.scale(
                                                       scaleX: -1,
                                                       child: Icon(Icons.chat))
@@ -204,31 +219,28 @@ class _MyAppState extends State<MyApp> {
                                       .toList(),
                                 )
                               : Wrap(children: [
-                                  SizedBox(
-                                    width: 200.0,
-                                    height: 100.0,
-                                    child: Shimmer.fromColors(
-                                      baseColor: Colors.red,
-                                      highlightColor: Colors.yellow,
-                                      child: Container(
-                                        width: 100,
-                                        height: 200,
-                                        child: Text(
-                                          'Shimmeddddr',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                  Wrap(children: [
+                                    Shimmer.fromColors(
+                                      baseColor: Colors.grey,
+                                      highlightColor: Colors.white,
+                                      child: Wrap(
+                                        children: [
+                                          for (var i = 0; i < 6; i++)
+                                            Container(
+                                              margin: EdgeInsets.all(10),
+                                              width: 150,
+                                              height: 150,
+                                              color: Colors.black12,
+                                            ),
+                                        ],
                                       ),
                                     ),
-                                  ),
+                                  ]),
                                 ]),
                         ],
                       ),
                     ]),
-            ),
+                ),
           )),
     );
   }
