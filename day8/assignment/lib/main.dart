@@ -16,12 +16,12 @@ class _MyAppState extends State<MyApp> {
   var dio = Dio();
   var resValue;
   void getDataUsingDio() async {
-    var res = await dio.get('https://sniperfactory.com/sfac/http_only_jwt_included',
-        options: Options(headers: {
-          'user-agent': 'Chrome',
-          // 'authorization' : 'Bearer ez-123123123123'
-        })
-        );
+    var res =
+        await dio.get('https://sniperfactory.com/sfac/http_only_jwt_included',
+            options: Options(headers: {
+              'user-agent': 'Chrome',
+              // 'authorization' : 'Bearer ez-123123123123'
+            }));
     resValue = res;
     print("response :" + res.toString());
     // options: Options(headers: {'user-agent :Chrome,'}));

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('플러터좋아요'),
         ),
-        body: Text('asdfa'),
+        body: Text('텍스트 위젯'),
         bottomNavigationBar: BottomNavigationBar(items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),

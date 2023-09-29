@@ -74,13 +74,13 @@ class _MyAppState extends State<MyApp> {
     var res = await dio.get(
       "https://sniperfactory.com/sfac/http_day16_dogs",
     );
-    // print(res.data['body'].runtimeType);
+    await Future.delayed(Duration(milliseconds: 1000));
+
     return res.data['body'];
   }
 
   void handleDogImagePost() async {
     dogImg = [];
-    await Future.delayed(Duration(milliseconds: 1000));
 
     dogImg = await getData();
     print(dogImg ?? " 개의 이미지를 받아오지 못했습니다");

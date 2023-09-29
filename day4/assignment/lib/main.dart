@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                   // );
                 },
               ),
-               InkWell(
+              InkWell(
                 child: Text('잉크웰'),
                 onTap: () {
                   showDialog(
@@ -83,17 +83,23 @@ class MyApp extends StatelessWidget {
                 icon: Icon(Icons.abc_sharp),
               ),
               Icon(Icons.abc_sharp),
-              TextField(
-                cursorColor: Colors.red,
-                onChanged: (value) {
-                  print(value);
-                },
-                decoration: InputDecoration(
-                  label: Text('이메일 입력'),
-                  labelStyle: TextStyle(color: Colors.green),
-                  hintText: 'expams@mg.gm',
-                  fillColor: Colors.black12,
-                  filled: true,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onSubmitted: (value) {
+                    print('onsubmit');
+                  },
+                  onChanged: (value) {
+                    print(value);
+                  },
+                  cursorColor: Colors.blue,
+                  decoration: InputDecoration(
+                    label: Text('이메일 입력'),
+                    border: OutlineInputBorder(),
+                    hintText: 'expams@gmail.com',
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
                 ),
               ),
             ],
