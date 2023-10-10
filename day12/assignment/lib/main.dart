@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
           .get('http://52.79.115.43:8090/api/collections/options/records');
       if (response.statusCode == 200) {
         data = response.data['items'];
+        print(data.toString());
         setState(() {});
       }
     } catch (e) {
@@ -76,7 +77,6 @@ class _MyAppState extends State<MyApp> {
                 ),
                 itemBuilder: (context, index) {
                   Text("${data.toString()}");
-                
                 },
               ),
             ),
