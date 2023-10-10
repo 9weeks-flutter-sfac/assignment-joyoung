@@ -34,10 +34,7 @@ class MyApp extends StatelessWidget {
                 children: [
                   Text('텍스트필드'),
                   Text('asd'),
-                  Text('텍스트필드'),
-                  Text('asd'),
-                  Text('텍스트필드'),
-                  Text('asd')
+
                 ],
               ),
             ),

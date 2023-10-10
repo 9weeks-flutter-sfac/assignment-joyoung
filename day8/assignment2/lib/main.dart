@@ -35,6 +35,8 @@ class _MyAppState extends State<MyApp> {
     var dio = Dio();
     var number = 100;
     bool success = true;
+
+    
     while (success) {
       try {
         var res = await dio.post(
@@ -56,7 +58,6 @@ class _MyAppState extends State<MyApp> {
           print('실패 숫자증가');
         }
       } catch (e) {
-        print('예외 발생: $e');
         print('통신 실패, 다시 시도합니다. Number: $number');
         number += 1;
       }

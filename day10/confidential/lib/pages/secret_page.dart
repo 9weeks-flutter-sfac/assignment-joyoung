@@ -27,7 +27,7 @@ class SecretPage extends StatelessWidget {
             future: SecretCatApi.fetchSecrets(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                // var newList = snapshot.data!.reversed.toList();
+                // var newList = snapshot.data!.reversed.toList(); 
                 return PageView.builder(
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, index) {
