@@ -16,10 +16,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> select = [];
   SharedPreferences? prefs;
   var dio = Dio();
   List<MenuModel>? data;
+  List<String> choice = [];
 
   @override
   void initState() {
@@ -32,7 +32,9 @@ class _MyAppState extends State<MyApp> {
   void initPreferences() async {
     prefs = await SharedPreferences.getInstance();
     if (prefs != null) {
-      select = prefs!.getStringList('selected') ?? [];
+      var mylist = prefs!.getStringList('choice') ?? [];
+      choice = mylist ?? [];
+
       setState(() {});
     }
   }
@@ -54,22 +56,24 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  var choice = [];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                select!.add('asd');
-              });
-              if (prefs != null) {
-                prefs!.setStringList('selected', select!);
-              }
-            },
-          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: choice.isNotEmpty
+              ? FloatingActionButton.extended(
+                  label: Text('결제하기'),
+                  onPressed: () {
+                    setState(() {
+                      setState(() {
+                        choice = [];
+                      });
+                    });
+                  },
+                )
+              : null,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -81,21 +85,21 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               Container(
-                height: 50,
                 alignment: Alignment.center,
                 child: choice.isNotEmpty
-                    ? ListView.builder(
-                        itemCount: choice.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Chip(
-                            label: Text(choice[index]),
-                            onDeleted: () {
-                              choice.removeAt(index);
-                              setState(() {});
-                            },
-                          );
-                        },
+                    ? Wrap(
+                        children: choice
+                            .map((e) => Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Chip(
+                                    label: Text(e),
+                                    onDeleted: () {
+                                      choice.remove(e);
+                                      setState(() {});
+                                    },
+                                  ),
+                            ))
+                            .toList(),
                       )
                     : Text("주문한 음식이 없습니다"),
               ),
@@ -107,21 +111,23 @@ class _MyAppState extends State<MyApp> {
               ),
               Expanded(
                 child: GridView.builder(
-                  itemCount: data?.length ?? 0 ,
+                  itemCount: data?.length ?? 0,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       mainAxisSpacing: 4,
                       crossAxisSpacing: 4),
                   itemBuilder: (context, index) {
-                    if (data != null ) {
+                    if (data != null) {
                       final item = data![index];
                       return Menu(
                         description: item.description,
                         name: item.menu,
                         img: item.imageUrl,
-                        choice: (name) {
-                          choice.add(name);
-                          print(name);
+                        choice: () {
+                          if (prefs != null) {
+                            prefs!.setStringList('choice', choice);
+                          }
+                          choice.add(data![index].menu);
                           setState(() {});
                         },
                       );

@@ -11,32 +11,28 @@ class Menu extends StatelessWidget {
   final String name;
   final String img;
   final String description;
-  final Function(String) choice;
+  final Function() choice;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        choice(name);
-      },
+      onTap: choice,
       child: Card(
-          child: Expanded(
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(child: Image.network(img, fit: BoxFit.cover)),
-              Text(
-                name,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                description,
-                style: TextStyle(fontSize: 12),
-              ),
-              Text('[담기]'),
-            ]),
-      )),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(child: Image.network(img, fit: BoxFit.fitWidth)),
+                Text(
+                  name,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 12),
+                ),
+                Text('[담기]'),
+              ])),
     );
   }
 }
