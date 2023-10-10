@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
   const Menu(
-      {super.key, required this.name, required this.img, required this.choice});
+      {super.key,
+      required this.name,
+      required this.img,
+      required this.choice,
+      required this.description});
 
   final String name;
   final String img;
+  final String description;
   final Function(String) choice;
 
   @override
@@ -14,26 +19,24 @@ class Menu extends StatelessWidget {
       onTap: () {
         choice(name);
       },
-      child: Container(
-          margin: EdgeInsets.only(bottom: 8),
-          width: 110,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black12, // 테두리 색상 설정
-              width: 1.0,
-            ),
-          ),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(img, height: 100, width: 110, fit: BoxFit.fill),
-                Text(
-                  name,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text('[담기]'),
-              ])),
+      child: Card(
+          child: Expanded(
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(child: Image.network(img, fit: BoxFit.cover)),
+              Text(
+                name,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                description,
+                style: TextStyle(fontSize: 12),
+              ),
+              Text('[담기]'),
+            ]),
+      )),
     );
   }
 }

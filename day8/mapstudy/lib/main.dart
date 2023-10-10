@@ -1,7 +1,5 @@
-
-void main() {
-Map<String, dynamic> userdata = 
-  {
+void MyApp() {
+  Map<String, dynamic> userdata = {
     "users": [
       {
         "user_id": 1,
@@ -61,11 +59,9 @@ Map<String, dynamic> userdata =
     ]
   };
 
+  String city = userdata['users'][0]['address']['city'];
+  String order = userdata['users'][0]['orders'][0]['products'][0]['product_id'];
 
-String city = userdata['users'][0]['address']['city'];
-String order = userdata['users'][0]['orders'][0]['products'][0]['product_id'];
-
-print(city);
-print(order);
-
+  print(city);
+  print(order);
 }
