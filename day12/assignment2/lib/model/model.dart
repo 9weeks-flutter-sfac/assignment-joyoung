@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 class Model {
   String image;
   int price;
@@ -20,10 +22,19 @@ class Model {
   @override
   String toString() => "데이타 : ( $image  $price   $name   $description  )";
 
+  Future<Model> networkData() async {
+    var res = await Dio().get('https://sniperfactory.com/sfac/http_json_data');
+    if (res.statusCode == 200) {
+      return Model.fromMap(res.data['item']);
+    }
+    ;
+    return Model(image: '', price: 0, name: '', description: '');
+  }
 }
 
-// void main() {
-//   Model word =
-//       Model(image: '이미지', price: 'dd', description: 'asdasd', name: '이름');
-//   print(word);
-// }
+void main() async {
+  Model data =
+      Model(image: 'image', price: 1, name: '', description: 'description');
+  Model result = await data.networkData();
+  print(result.toString());
+}
