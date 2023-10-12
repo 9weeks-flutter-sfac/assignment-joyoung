@@ -27,9 +27,7 @@ class _CatState extends State<Cat> {
     if (response != null) {
       data = CatCommon.fromMap(response.data);
       print("고양이 설명  ${data.data[0]}");
-      setState(() {
-        
-      });
+      setState(() {});
     }
   }
 
@@ -39,15 +37,16 @@ class _CatState extends State<Cat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
+      appBar: AppBar(centerTitle: true, title: Text('고양이 상식 1')),
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-          
-          Text('고양이 페이지 \n https://meowfacts.herokuapp.com/'),
-          if (data != null) Text('${data.data[0]}'),
-        ]),
-      ),
+            if (data != null) Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text('${data.data[0]}'),
+            ),
+          ]),
     );
   }
 }
