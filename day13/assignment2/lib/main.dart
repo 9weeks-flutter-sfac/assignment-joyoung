@@ -23,9 +23,9 @@ class _MyAppState extends State<MyApp> {
     // SlipService().getSlip();
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: GridView(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, mainAxisSpacing: 15, crossAxisSpacing: 15),
           children: [
             ElevatedButton(
                 onPressed: () {

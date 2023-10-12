@@ -13,10 +13,10 @@ class WiseSaying {
     };
   }
 
+
   factory WiseSaying.fromMap(Map<String, dynamic> map) {
-    // final Map<String, dynamic> slipData = map['slip'] ;
     return WiseSaying(
-      slip: map['slip'] != null ? map['slip'] as Map<String, dynamic> : null,
+      slip: map['slip'] as Map<String, dynamic>,
     );
   }
 

@@ -45,7 +45,11 @@ class _Cat2State extends State<Cat2> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text("${data!.length}" , style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    Text(
+                      "${data!.length}",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                     Text(data!.fact),
                   ],
                 ),
