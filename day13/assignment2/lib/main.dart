@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    // SlipService().getSlip();
     return Scaffold(
       body: Center(
         child: Column(
