@@ -1,5 +1,6 @@
 import 'package:assignment/model/model.dart';
 import 'package:assignment/utils/apiutil.dart';
+import 'package:assignment/widget/texttile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,23 +33,31 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
       home: Scaffold(
         body: data == null
             ? Text('no data')
             : ListView.builder(
                 itemCount: data!.length == 0 ? 0 : data!.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+                  if (index > 0 && index % 5 == 0) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(data![index].userId.toString()),
-                        Text(data![index].id.toString()),
-                        Text(data![index].body),
-                        Text(data![index].title),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'POST ${index - 4} ~ ${index}',
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        textTile(data: data![index]),
                       ],
-                    ),
-                  );
+                    );
+                  } else {
+                    return textTile(data: data![index]);
+                  }
                 },
               ),
       ),
