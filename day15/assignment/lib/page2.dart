@@ -11,28 +11,28 @@ class Page2 extends StatelessWidget {
     var controller = Get.find<AppSettingController>();
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(controller.model.appName),
-            Text(controller.model.appAuthor),
-            Text(controller.model.appVersion),
-            Obx(
-              () => Text('current coin : ${controller.count.value}'),
-            ),
-            Icon(
-              FontAwesomeIcons.bitcoin,
-              size: 96.0,
-              color: Colors.yellow.shade700,
-            ),
-            TextButton(
-                onPressed: () {
-                  controller.count =0.obs;
-                  print(controller.count.toString());
-                },
-                child: Text('코인 리셋'))
-          ],
+      body: GestureDetector(
+        onTap: () => Get.back(),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Obx(
+                () => Text('current coin : ${controller.count.value}'),
+              ),
+              Icon(
+                FontAwesomeIcons.bitcoin,
+                size: 96.0,
+                color: Colors.yellow.shade700,
+              ),
+              TextButton(
+                  onPressed: () {
+                    controller.count.value = 0;
+                    print(controller.count.toString());
+                  },
+                  child: Text('코인 리셋'))
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
-import 'package:assignment/controller/bitcoin.dart';
+import 'package:assignment/controller/appsettingcontroller.dart';
 import 'package:assignment/model/model.dart';
 import 'package:assignment/page2.dart';
+import 'package:assignment/page3.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
       model: Model(
           isSoundOn: true,
           isNotificationOn: true,
-          appVersion: "appVersion",
-          appName: "appName",
-          appAuthor: "appAuthor",
-          appPackageName: "appPackageName"),
+          appVersion: "1.0.0",
+          appName: "비트코인",
+          appAuthor: "조영",
+          appPackageName: "비트코인 패키지",
+          lastUpdated: DateTime.now()),
       count: RxInt(1),
     ));
     return Scaffold(
@@ -38,8 +40,14 @@ class MyApp extends StatelessWidget {
                 onPressed: () => Get.to(
                       const Page2(),
                     ),
-                child: Text('상점으로 이동하기'))
+                child: Text('상점으로 이동하기')),
+                      TextButton(
+                onPressed: () => Get.to(
+                      const Page3(),
+                    ),
+                child: Text('만든이 정보로 이동하기'))
           ],
+          
         ),
       ),
     );

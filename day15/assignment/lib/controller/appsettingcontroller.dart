@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:assignment/main.dart';
 import 'package:get/get.dart';
 
@@ -11,36 +13,26 @@ class AppSettingController extends GetxController {
     required this.model,
     required this.count,
   });
-  increment() {
-    interval(count, (callback) => count.value += 1);
-    update();
+
+  void increase() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      count++;
+    });
   }
 
-  // increment(){
-  // 	count++;
-  //   update();
-  // }
   @override
   void onInit() {
     super.onInit();
-    print('실행 ${count.value +1}');
-    interval(count, (callback) => count.value += 1);
+    increase();
     // increment();
-    ever(
-        count,
-        (value) => {
-              if (value == 0)
-                {
-                  Get.to(() => main()),
-                }
-              else
-                {
-                  print(value),
-                }
-            });
+    ever(count, (value) {
+      print(count);
+      if (value % 10 == 0) {
+        Get.snackbar('코인 $value 개 돌파 ', '축하합니다');
+      }
+    });
   }
 }
-
 
 //  bool  isSoundOn 
 //  ---  --- 
@@ -49,4 +41,4 @@ class AppSettingController extends GetxController {
 //  String  appName 
 //  String  appAuthor 
 //  String  appPackageName 
-//  DateTime?  lastUpdated 
+//  DateTime?  lastUpdated
