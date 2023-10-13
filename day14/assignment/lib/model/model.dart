@@ -2,15 +2,15 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Model {
-  final int userId;
-  final int id;
-  final String title;
-  final String body;
+  int userId;
+  int id;
+  String title;
+  bool completed;
   Model({
     required this.userId,
     required this.id,
     required this.title,
-    required this.body,
+    required this.completed,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,7 +18,7 @@ class Model {
       'userId': userId,
       'id': id,
       'title': title,
-      'body': body,
+      'completed': completed,
     };
   }
 
@@ -27,12 +27,11 @@ class Model {
       userId: map['userId'] as int,
       id: map['id'] as int,
       title: map['title'] as String,
-      body: map['body'] as String,
+      completed: map['completed'] as bool,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Model.fromJson(String source) =>
-      Model.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Model.fromJson(String source) => Model.fromMap(json.decode(source) as Map<String, dynamic>);
 }
