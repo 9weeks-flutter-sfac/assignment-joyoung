@@ -1,3 +1,4 @@
+import 'package:assignment/page/search_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -7,6 +8,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
+//https://api.dictionaryapi.dev/api/v2/entries/en/pioneer
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,15 @@ class _MainPageState extends State<MainPage> {
                           borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
-                      onSubmitted: (value) {},
-
+                      onSubmitted: (value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SearchPage(
+                                word: value,
+                              ),
+                            ));
+                      },
                     ),
                   ),
                 ),
