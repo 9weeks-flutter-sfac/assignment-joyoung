@@ -1,4 +1,4 @@
-import 'package:assignment/model/model.dart';
+import 'package:assignment/model/searchmodel.dart';
 import 'package:assignment/page/main_page.dart';
 import 'package:assignment/utils/apiutil.dart';
 import 'package:flutter/material.dart';

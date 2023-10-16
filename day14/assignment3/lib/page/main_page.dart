@@ -31,6 +31,7 @@ class _MainPageState extends State<MainPage> {
                       decoration: const InputDecoration(
                         hintText: "Search",
                         suffixIcon: Icon(Icons.search),
+                        
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),

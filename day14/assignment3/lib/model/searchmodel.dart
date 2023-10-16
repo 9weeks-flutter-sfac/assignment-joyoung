@@ -4,22 +4,77 @@ import 'dart:convert';
 class SearchModel {
   String word;
   String phonetic;
-  Phonetics phonetics;
-  Meanings meanings;
+  List<Meanings> meanings;
   SearchModel({
     required this.word,
     required this.phonetic,
-    required this.phonetics,
     required this.meanings,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'word': word,
+      'phonetic': phonetic,
+      'meanings': meanings,
+    };
+  }
+
+  factory SearchModel.fromMap(Map<String, dynamic> map) {
+    return SearchModel(
+        word: map['word'] as String,
+        phonetic: map['phonetic'] as String,
+        meanings: List<Meanings>.from(
+            (map['meanings'] as List<dynamic>).map((meanings) {
+          return Meanings.fromMap(meanings as Map<String, dynamic>);
+        })));
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory SearchModel.fromJson(String source) =>
+      SearchModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
-class Phonetics{
+class Meanings {
+  String partOfSpeech;
+  List<Definition> definitions;
+  Meanings({
+    required this.partOfSpeech,
+    required this.definitions,
+  });
 
+  factory Meanings.fromMap(Map<String, dynamic> map) {
+    return Meanings(
+      partOfSpeech: map['partOfSpeech'] as String,
+      definitions: List<Definition>.from(
+        (map['definitions'] as List<dynamic>).map<Definition>(
+          (x) => Definition.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+    );
+  }
+
+  factory Meanings.fromJson(String source) =>
+      Meanings.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
-class Meanings{
-  
+class Definition {
+  final String definition;
+  final List<dynamic> synonyms;
+  final List<dynamic> antonyms;
+
+  Definition(
+      {required this.definition,
+      required this.synonyms,
+      required this.antonyms});
+
+  factory Definition.fromMap(Map<String, dynamic> map) {
+    return Definition(
+      definition: map['definition'] as String,
+      synonyms: List<dynamic>.from(map['synonyms'] as List<dynamic>),
+      antonyms: List<dynamic>.from(map['antonyms'] as List<dynamic>),
+    );
+  }
 }
 
 // [
