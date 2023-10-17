@@ -8,6 +8,12 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
   final Rxn<User> _user = Rxn();
   User? get user => _user.value;
+
+  final Rx<String> _token = Rx<String>("");
+  String get token => _token.value;
+
+  set token(String value) => _token.value = value;
+
   Dio dio = Dio();
 
   Login(String id, String pw) async {
@@ -18,9 +24,11 @@ class AuthController extends GetxController {
         'password': pw,
       });
       if (res.statusCode == 200) {
+        var token = res.data['token'];
+        print(res.data.toString());
         var userdata = User.fromMap(res.data['record']);
-        print(userdata);
         _user(userdata);
+        _token(token);
       }
     } catch (e) {
       print(e);

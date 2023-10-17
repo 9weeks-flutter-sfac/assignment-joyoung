@@ -9,8 +9,15 @@ class MainPage extends GetView<MainController> {
   static const String route = '/main';
   @override
   Widget build(BuildContext context) {
-    var user = Get.find<AuthController>().user;
+    var user = Get.find<AuthController>().user!;
+    var token = Get.find<AuthController>().token;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.readDocuments();
+        },
+        child: Icon(Icons.refresh),
+      ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
             onTap: controller.onPageTapped,
@@ -21,21 +28,30 @@ class MainPage extends GetView<MainController> {
             ]),
       ),
       body: PageView(controller: controller.pageController, children: [
-        Column(
-          children: [
-            Text(
-              '${user!.name} 안녕하세요',
-              style: TextStyle(fontSize: 32),
-            ),
-          ],
-        ),
+        Obx(() => ListView(
+              children: controller.document?.map((document) {
+                    return Column(
+                      children: [
+                        Text(
+                          '${user!.name} 안녕하세요',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                        Text(document.title ?? ''),
+                        Text(document.content ?? ''),
+                        Text(document.sec_level ?? ''),
+                        Image.network(document.attachment_url ?? '')
+                      ],
+                    );
+                  }).toList() ??
+                  [],
+            )),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               leading: CircleAvatar(),
-              title: Text(user!.username),
-              subtitle: Text(user!.username),
+              title: Text(user.username),
+              subtitle: Text(user.username),
             ),
             ListTile(
               title: Text('로그아웃 하기'),
