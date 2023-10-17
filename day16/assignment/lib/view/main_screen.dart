@@ -28,23 +28,37 @@ class MainPage extends GetView<MainController> {
             ]),
       ),
       body: PageView(controller: controller.pageController, children: [
-        Obx(() => ListView(
-              children: controller.document?.map((document) {
-                    return Column(
-                      children: [
-                        Text(
-                          '${user!.name} 안녕하세요',
-                          style: TextStyle(fontSize: 32),
-                        ),
-                        Text(document.title ?? ''),
-                        Text(document.content ?? ''),
-                        Text(document.sec_level ?? ''),
-                        Image.network(document.attachment_url ?? '')
-                      ],
-                    );
-                  }).toList() ??
-                  [],
-            )),
+        Column(
+          children: [
+            Text(
+              '${user!.name} 안녕하세요',
+              style: TextStyle(fontSize: 32),
+            ),
+            Text(
+              token != null && token.isNotEmpty ? "토큰 :" + token : 'null',
+              style: TextStyle(fontSize: 12),
+            ),
+            Obx(() => Expanded(
+                  child: ListView.builder(
+                    itemCount: controller.document?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Text(controller.document![index].title ?? ''),
+                          Text(controller.document![index].content ?? ''),
+                          Text(controller.document![index].sec_level ?? ''),
+                          if (controller.document![index].attachment_url !=
+                              null)
+                            Image.network(controller
+                                .document![index].attachment_url
+                                .toString()),
+                        ],
+                      );
+                    },
+                  ),
+                )),
+          ],
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
