@@ -41,13 +41,12 @@ class MyApp extends StatelessWidget {
                       const Page2(),
                     ),
                 child: Text('상점으로 이동하기')),
-                      TextButton(
+            TextButton(
                 onPressed: () => Get.to(
                       const Page3(),
                     ),
                 child: Text('만든이 정보로 이동하기'))
           ],
-          
         ),
       ),
     );
