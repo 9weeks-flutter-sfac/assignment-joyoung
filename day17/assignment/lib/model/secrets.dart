@@ -9,11 +9,13 @@ class SecretModel {
   String secret;
   String author;
   String authorName;
+  String collectionId;
   SecretModel({
     required this.created,
     required this.secret,
     required this.author,
     required this.authorName,
+    required this.collectionId,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,6 +24,7 @@ class SecretModel {
       'secret': secret,
       'author': author,
       'authorName': authorName,
+      'collectionId': collectionId,
     };
   }
 
@@ -31,6 +34,7 @@ class SecretModel {
       secret: map['secret'] as String,
       author: map['author'] as String,
       authorName: map['authorName'] as String,
+      collectionId: map['collectionId'] as String,
     );
   }
 

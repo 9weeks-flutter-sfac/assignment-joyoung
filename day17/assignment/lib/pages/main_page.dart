@@ -59,7 +59,7 @@ class MainPage extends GetView<MainController> {
                 ),
                 onTap: () => {
                   Get.toNamed(SecretPage.route),
-                  Get.put(() => SecretController()),
+                  Get.lazyPut(() => SecretController()),
                 },
                 trailing: CircleAvatar(
                     radius: 20,
@@ -72,13 +72,13 @@ class MainPage extends GetView<MainController> {
               color: Colors.white70,
               child: ListTile(
                 tileColor: Colors.blue,
-                title: Text('대나무 숲에 발자국',
+                title: Text('떨어진 사료를 추적',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     )),
                 subtitle: Text(
-                  '발자국을 추적하기 ',
+                  '캣맘 리스트',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class MainPage extends GetView<MainController> {
                 ),
                 onTap: () => {
                   Get.toNamed(AuthorPage.route),
-                  Get.put(() => AuthorController()),
+                  Get.lazyPut(() => AuthorController()),
                 },
                 trailing: CircleAvatar(
                     radius: 20,
@@ -99,20 +99,20 @@ class MainPage extends GetView<MainController> {
               color: Colors.white70,
               child: ListTile(
                 tileColor: Colors.blue,
-                title: Text('대나무 숲에 외치러 가기',
+                title: Text('대나무 숲에 고양이와 조우',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     )),
                 subtitle: Text(
-                  '외쳐보자',
+                  '고양이들과 어울리기',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 onTap: () => {
-                  Get.put(() => UploadController()),
+                  Get.lazyPut(() => UploadController()),
                   Get.toNamed(UploadPage.route),
                 },
                 trailing: CircleAvatar(
