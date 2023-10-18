@@ -1,3 +1,4 @@
+import 'package:assignment/controller/auth_controller.dart';
 import 'package:assignment/controller/login_controller.dart';
 import 'package:assignment/widget/input_field.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class LoginPage extends GetView<LoginController> {
   static const String route = '/login';
   @override
   Widget build(BuildContext context) {
+    Get.put(AuthController());
     return Scaffold(
       body: Center(
           child: Column(
@@ -20,7 +22,7 @@ class LoginPage extends GetView<LoginController> {
           SizedBox(
             height: 20,
           ),
-           Input(
+          Input(
             label: '비밀번호',
             controller: controller.pwController,
           ),
