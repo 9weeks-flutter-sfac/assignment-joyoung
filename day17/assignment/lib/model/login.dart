@@ -2,15 +2,19 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class LoginModel {
+  String id;
   String email;
   String username;
   LoginModel({
+    required this.id,
     required this.email,
     required this.username,
   });
 
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'email': email,
       'username': username,
     };
@@ -18,6 +22,7 @@ class LoginModel {
 
   factory LoginModel.fromMap(Map<String, dynamic> map) {
     return LoginModel(
+      id: map['id'] as String,
       email: map['email'] as String,
       username: map['username'] as String,
     );

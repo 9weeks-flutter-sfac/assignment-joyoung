@@ -23,6 +23,17 @@ class AuthController extends GetxController {
   Dio dio = Dio();
 
   SignUp(String email, String pw, String username) async {
+    final emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
+    if (emailRegExp.hasMatch(email) == false) {
+      print('이메일 양식이 안맞음');
+      return;
+    }
+    if (pw.length <= 8) {
+      print('비밀번호 9자 미만');
+      return;
+    }
     dio.options.baseUrl = "http://52.79.115.43:8090";
     try {
       var res = await dio.post(ApiRoutes.SignUpdress, data: {
@@ -33,8 +44,7 @@ class AuthController extends GetxController {
       });
       if (res.statusCode == 200) {
         print("res 데이타 출력" + res.data.toString());
-
-        var userdata = SignUpModel.fromMap(res.data);
+        SignUpModel userdata = SignUpModel.fromMap(res.data);
         print("userdata 데이타 출력" + userdata.toString());
 
         _sign.value = userdata;
@@ -48,6 +58,17 @@ class AuthController extends GetxController {
   }
 
   Login(String id, String pw) async {
+    final emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
+    if (emailRegExp.hasMatch(id) == false) {
+      print('이메일 양식이 안맞음');
+      return;
+    }
+    if (pw.length <= 8) {
+      print('비밀번호 9자 미만');
+      return;
+    }
     dio.options.baseUrl = "http://52.79.115.43:8090";
     try {
       var res = await dio.post(ApiRoutes.LoginAdress, data: {
@@ -55,11 +76,9 @@ class AuthController extends GetxController {
         'password': pw,
       });
       if (res.statusCode == 200) {
-        print("res 데이타 출력" + res.data['record'].toString());
         LoginModel userdata = LoginModel.fromMap(res.data['record']);
-        print("userdata" + userdata.toJson());
+
         _login.value = userdata;
-        print(_login.toString());
       }
     } catch (e) {
       print("에러");

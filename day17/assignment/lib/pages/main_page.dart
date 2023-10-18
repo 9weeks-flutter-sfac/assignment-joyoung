@@ -1,5 +1,8 @@
 import 'package:assignment/controller/auth_controller.dart';
+import 'package:assignment/controller/author_controller.dart';
 import 'package:assignment/controller/main_controller.dart';
+import 'package:assignment/controller/scret_controller.dart';
+import 'package:assignment/controller/upload_controller.dart';
 import 'package:assignment/pages/author_page.dart';
 import 'package:assignment/pages/login_page.dart';
 import 'package:assignment/pages/secret_page.dart';
@@ -54,12 +57,14 @@ class MainPage extends GetView<MainController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onTap: () => Get.toNamed(SecretPage.route),
+                onTap: () => {
+                  Get.toNamed(SecretPage.route),
+                  Get.put(() => SecretController()),
+                },
                 trailing: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
-                    backgroundImage:
-                        AssetImage('images/avatar/woman.png')),
+                    backgroundImage: AssetImage('images/avatar/woman.png')),
               ),
             ),
             Container(
@@ -79,12 +84,14 @@ class MainPage extends GetView<MainController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onTap: () => Get.toNamed(AuthorPage.route),
+                onTap: () => {
+                  Get.toNamed(AuthorPage.route),
+                  Get.put(() => AuthorController()),
+                },
                 trailing: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
-                    backgroundImage:
-                        AssetImage('images/avatar/woman.png')),
+                    backgroundImage: AssetImage('images/avatar/woman.png')),
               ),
             ),
             Container(
@@ -104,12 +111,14 @@ class MainPage extends GetView<MainController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onTap: () => Get.toNamed(UploadPage.route),
+                onTap: () => {
+                  Get.put(() => UploadController()),
+                  Get.toNamed(UploadPage.route),
+                },
                 trailing: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
-                    backgroundImage:
-                        AssetImage('images/avatar/woman.png')),
+                    backgroundImage: AssetImage('images/avatar/woman.png')),
               ),
             )
           ],

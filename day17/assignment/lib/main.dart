@@ -37,33 +37,39 @@ class MyApp extends StatelessWidget {
           )),
           child: Center(
               child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '대나무에 서식하는 고양이를 \n 발견햇다',
+                '대나무숲에 서식하는 \n 고양이를  발견햇다!!',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     background: Paint()),
               ),
-              SizedBox(
-                height: 100,
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                    padding: MaterialStatePropertyAll(EdgeInsets.all(30)),
-                    backgroundColor: MaterialStatePropertyAll(Colors.white)),
-                onPressed: () => Get.toNamed(LoginPage.route),
-                child: Text('이미 캣맘입니다(로그인)'),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () => Get.toNamed(SignUpPage.route),
-                child: Text('캣맘클럽 가입하기(회원가입)'),
+              Column(
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        padding: MaterialStatePropertyAll(EdgeInsets.all(30)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.white)),
+                    onPressed: () => Get.toNamed(LoginPage.route),
+                    child: Text('이미 캣맘입니다(로그인)'),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        padding: MaterialStatePropertyAll(EdgeInsets.all(30)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.white)),
+                    onPressed: () => Get.toNamed(SignUpPage.route),
+                    child: Text('캣맘클럽 가입하기(회원가입)'),
+                  ),
+                ],
               ),
             ],
           )),
@@ -75,7 +81,7 @@ class MyApp extends StatelessWidget {
         Get.lazyPut(() => SignUpController());
         Get.lazyPut(() => AuthController());
         Get.lazyPut(() => MainController());
-        Get.lazyPut(() => ScretController());
+        Get.lazyPut(() => SecretController());
         Get.lazyPut(() => UploadController());
         Get.lazyPut(() => AuthorController());
         // Get.put(dependency)

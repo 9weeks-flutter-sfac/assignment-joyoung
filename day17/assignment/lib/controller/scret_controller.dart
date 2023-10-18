@@ -1,15 +1,17 @@
+import 'dart:js_interop';
+
 import 'package:assignment/model/secrets.dart';
 import 'package:assignment/util/api_route.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+class SecretController extends GetxController {
+  final Rxn<List<SecretModel>> _secret = Rxn();
 
-class ScretController extends GetxController {
-  final Rxn<List<SecretModel>> _scret = Rxn();
-
-  List<SecretModel>? get scret => _scret.value;
+  List<SecretModel>? get secret => _secret.value;
 
   Dio dio = Dio();
+ 
 
   Secret() async {
     dio.options.baseUrl = "http://52.79.115.43:8090";
@@ -18,11 +20,14 @@ class ScretController extends GetxController {
         ApiRoutes.ScretAdress,
       );
       if (res.statusCode == 200) {
-        print(res.data.toString());
-        var data = res.data['itmes'];
+        var data = res.data['items'];
+
         List<SecretModel> userdata =
-            List.from(data.map((e) => SecretModel.fromMap(e)));
-        _scret(userdata);
+            List<SecretModel>.from(data.map((e) => SecretModel.fromMap(e)));
+
+        // print(userdata[1].secret);
+
+        _secret(userdata);
       }
     } catch (e) {
       print(e);
@@ -34,8 +39,8 @@ class ScretController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     Secret();
-    ever(_scret, (value) {
-      print(_scret);
+    ever(_secret, (value) {
+      print(secret![0].secret);
     });
   }
 }

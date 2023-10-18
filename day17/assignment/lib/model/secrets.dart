@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:assignment/util/api_route.dart';
+import 'package:dio/dio.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class SecretModel {
   String created;
@@ -37,6 +40,32 @@ class SecretModel {
       SecretModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
+void main() {
+  Dio dio = Dio();
+
+  Secret() async {
+    dio.options.baseUrl = "http://52.79.115.43:8090";
+    try {
+      var res = await dio.get(
+        ApiRoutes.ScretAdress,
+      );
+      if (res.statusCode == 200) {
+        var data = res.data['items'];
+
+        List<SecretModel> userdata =
+            List<SecretModel>.from(data.map((e) => SecretModel.fromMap(e)));
+
+        print(userdata[0].secret);
+
+        // _secret(userdata);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Secret();
+}
 
 // {
 //   "page": 1,
