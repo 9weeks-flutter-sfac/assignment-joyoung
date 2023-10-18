@@ -61,7 +61,7 @@ class AuthorPage extends GetView<AuthorController> {
                               height: 10,
                             ),
                             Text(
-                              snapshot.data![index].collectionId ?? "Unknown",
+                              snapshot.data![index].collectionName ?? "Unknown",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
