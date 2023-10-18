@@ -13,8 +13,9 @@ class AuthorPage extends GetView<AuthorController> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.transparent,
-        title: Text('뒤로가기'),
+        title: Text('뒤로가기', style: TextStyle(color: Colors.white)),
         centerTitle: false,
         elevation: 0,
       ),
@@ -44,11 +45,18 @@ class AuthorPage extends GetView<AuthorController> {
                         delay: Duration(milliseconds: 200 * index),
                         child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 43,
-                              // backgroundImage:
-                              //     NetworkImage(snapshot.data![index]!),
-                            ),
+                            if (snapshot.data![index].avatar != null)
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    NetworkImage(snapshot.data![index].avatar),
+                              ),
+                            if (snapshot.data![index].avatar == null)
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    AssetImage('images/avatar/catmom.jpg'),
+                              ),
                             SizedBox(
                               height: 10,
                             ),

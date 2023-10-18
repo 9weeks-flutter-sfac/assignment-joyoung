@@ -1,5 +1,5 @@
 class ApiRoutes {
-  static const String UserListAdress = '/api/collections/documents/records';
+  static const String UserListAdress = '/api/collections/users/records?sort=-created';
   static const String LoginAdress = "/api/collections/users/auth-with-password";
 
   static const String SignUpdress = "/api/collections/users/records";

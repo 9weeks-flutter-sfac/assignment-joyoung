@@ -3,7 +3,7 @@ import 'package:assignment/model/secrets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/scret_controller.dart';
+import '../controller/secret_controller.dart';
 
 class SecretPage extends GetView<SecretController> {
   const SecretPage({super.key});
@@ -16,8 +16,9 @@ class SecretPage extends GetView<SecretController> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.transparent,
-          title: Text('뒤로가기'),
+          title: Text('뒤로가기', style: TextStyle(color: Colors.white)),
           centerTitle: false,
           elevation: 0,
         ),
@@ -47,9 +48,25 @@ class SecretPage extends GetView<SecretController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          Text(
+                            '사료를 주었더니 고양이가 \n 다른사람의 비밀을 알려준다!!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 11),
+                          ),
                           Image(
-                            height: 45,
-                            image: AssetImage('images/avatar/girl.png'),
+                            height: 80,
+                            image: AssetImage('images/avatar/cecretcat.jpg'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              secret.authorName != null
+                                  ? secret.authorName + '가 이렇게 말했다..'
+                                  : '익명의 사람의 말했다',
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 20),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(15.0), /////
@@ -60,11 +77,6 @@ class SecretPage extends GetView<SecretController> {
                               style:
                                   TextStyle(color: Colors.white, fontSize: 30),
                             ),
-                          ),
-                          Text(
-                            secret.authorName ?? secret.authorName,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ],
                       ),

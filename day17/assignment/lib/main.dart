@@ -1,7 +1,7 @@
 import 'package:assignment/controller/auth_controller.dart';
 import 'package:assignment/controller/author_controller.dart';
 import 'package:assignment/controller/main_controller.dart';
-import 'package:assignment/controller/scret_controller.dart';
+import 'package:assignment/controller/secret_controller.dart';
 import 'package:assignment/controller/signup_controller.dart';
 import 'package:assignment/controller/upload_controller.dart';
 import 'package:assignment/pages/author_page.dart';
@@ -77,13 +77,13 @@ class MyApp extends StatelessWidget {
       ),
       theme: ThemeData(useMaterial3: true),
       initialBinding: BindingsBuilder(() {
-        Get.lazyPut(() => LoginController());
-        Get.lazyPut(() => SignUpController());
-        Get.lazyPut(() => AuthController());
-        Get.lazyPut(() => MainController());
-        Get.lazyPut(() => SecretController());
-        Get.lazyPut(() => UploadController());
-        Get.lazyPut(() => AuthorController());
+        Get.lazyPut(() => LoginController() , fenix: true);
+        Get.lazyPut(() => SignUpController(), fenix: true);
+        Get.lazyPut(() => AuthController(), fenix: true);
+        Get.lazyPut(() => MainController(), fenix: true);
+        Get.lazyPut(() => SecretController(), fenix: true);
+        Get.lazyPut(() => UploadController(), fenix: true);
+        Get.lazyPut(() => AuthorController(), fenix: true);
         // Get.put(dependency)
       }),
       getPages: [

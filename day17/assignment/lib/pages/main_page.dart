@@ -1,7 +1,7 @@
 import 'package:assignment/controller/auth_controller.dart';
 import 'package:assignment/controller/author_controller.dart';
 import 'package:assignment/controller/main_controller.dart';
-import 'package:assignment/controller/scret_controller.dart';
+import 'package:assignment/controller/secret_controller.dart';
 import 'package:assignment/controller/upload_controller.dart';
 import 'package:assignment/pages/author_page.dart';
 import 'package:assignment/pages/login_page.dart';

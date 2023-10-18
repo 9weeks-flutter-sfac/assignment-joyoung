@@ -13,8 +13,10 @@ class UploadPage extends GetView<UploadController> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+
           backgroundColor: Colors.transparent,
-          title: Text('뒤로가기'),
+          title: Text('뒤로가기' ,style: TextStyle(color: Colors.white)),
           centerTitle: false,
           elevation: 0,
         ),

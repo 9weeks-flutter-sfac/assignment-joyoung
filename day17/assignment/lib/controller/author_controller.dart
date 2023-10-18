@@ -1,31 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
-import 'package:assignment/model/read.dart';
+import 'package:assignment/model/author_model.dart';
 import 'package:assignment/util/api_route.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import '../model/secrets.dart';
-
 class AuthorController extends GetxController {
-  final Rxn<List<SecretModel>> _Author = Rxn();
+  final Rxn<List<AuthorModel>> _Author = Rxn();
 
   Dio dio = Dio();
 
-  Future<List<SecretModel>> fetchAuthorData() async {
-    final List<SecretModel> authorData = [];
+  Future<List<AuthorModel>> fetchAuthorData() async {
+    final List<AuthorModel> authorData = [];
 
     dio.options.baseUrl = "http://52.79.115.43:8090";
     try {
-      var res = await dio.get(ApiRoutes.ScretAdress);
+      var res = await dio.get(ApiRoutes.UserListAdress);
       if (res.statusCode == 200) {
         var data = res.data['items'];
 
         print(" data: " + data.toString());
 
         authorData.addAll(
-          List<SecretModel>.from(data.map((e) => SecretModel.fromMap(e))),
+          List<AuthorModel>.from(data.map((e) => AuthorModel.fromMap(e))),
         );
       }
     } catch (e) {

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:assignment/controller/auth_controller.dart';
 import 'package:assignment/model/upload.dart';
+import 'package:assignment/pages/main_page.dart';
 import 'package:assignment/util/api_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class UploadController extends GetxController {
       if (res.statusCode == 200) {
         var data = res.data;
         print(data);
+        Get.to(MainPage());
         // List<UploadModel> userdata =
         //     List<UploadModel>.from(data.map((e) => UploadModel.fromMap(e)));
 
