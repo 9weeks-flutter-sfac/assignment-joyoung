@@ -27,10 +27,12 @@ class _MainPageState extends State<MainPage> {
     // });
   }
 
-  createDocument(String title) async {
+  createDocument(String docId, String title) async {
     var res = await instance
         .collection('memo')
-        .add({'title': title, 'isFinished': false});
+        .doc(docId)
+        .set({'title': title, 'isFinished': false});
+    print(docId);
   }
 
   readFinishedDocument() async {
@@ -42,35 +44,55 @@ class _MainPageState extends State<MainPage> {
     print(res.size);
   }
 
+  updateDocument(String docId, Map<String, dynamic> data) {
+    instance.collection('memo').doc(docId).update(data);
+  }
+
+  deleteDocument(String docId) async {
+    instance.collection('memo').doc(docId).delete();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (items.isNotEmpty) ...items.map((e) => Text(e['title'])).toList(),
-          TextButton(
-              onPressed: () {
-                getDoucument('vcRQIYabmRZdJMdFXtph');
-              },
-              child: Text('선택 데이타 가져오기')),
-          TextButton(
-              onPressed: () {
-                readFromCloudFireStrore();
-              },
-              child: Text('데이타 다 가져오기')),
-          TextButton(
-              onPressed: () {
-                readFinishedDocument();
-              },
-              child: Text('data')),
-          TextButton(
-              onPressed: () {
-                createDocument('책방가서 책읽기');
-              },
-              child: Text('문서 추가')),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (items.isNotEmpty)
+              ...items.map((e) => Text(e['title'])).toList(),
+            TextButton(
+                onPressed: () {
+                  getDoucument('vcRQIYabmRZdJMdFXtph');
+                },
+                child: Text('전달된 vcRQIYabmRZdJMdFXtph의 데이타 가져오기')),
+            TextButton(
+                onPressed: () {
+                  readFromCloudFireStrore();
+                },
+                child: Text('데이타 가져오기')),
+            TextButton(
+                onPressed: () {
+                  createDocument('123456789', '노래방 가서 노래부르기');
+                },
+                child: Text('문서 추가 (지정아이디)')),
+            TextButton(
+                onPressed: () {
+                  readFinishedDocument();
+                },
+                child: Text('data')),
+            TextButton(
+                onPressed: () {
+                  updateDocument('123456789', {'isFinished': false});
+                },
+                child: Text('문서 수정')),
+            TextButton(
+                onPressed: () {
+                  deleteDocument('123456789');
+                },
+                child: Text('문서 삭제')),
+          ],
+        ),
       ),
     );
   }
