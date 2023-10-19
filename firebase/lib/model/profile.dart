@@ -8,4 +8,6 @@ class Profile {
     required this.job,
     required this.bloodtype,
   });
+
+  get value => null;
 }

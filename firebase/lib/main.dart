@@ -1,12 +1,12 @@
 import 'package:firebase/controller/auth_controller.dart';
 import 'package:firebase/controller/login_controller.dart';
+import 'package:firebase/controller/mian_controller.dart';
 import 'package:firebase/controller/profile_controller.dart';
 import 'package:firebase/controller/profile_edit_controller.dart';
 import 'package:firebase/firebase_options.dart';
 import 'package:firebase/page/login_page.dart';
 import 'package:firebase/page/main_page.dart';
 import 'package:firebase/page/profile_edit_page.dart';
-import 'package:firebase/page/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
         Get.lazyPut(() => LoginContorller());
         Get.lazyPut(() => ProfileContorller());
         Get.lazyPut(() => ProfileEditController());
+        Get.lazyPut(() => MainController());
+
       }),
       getPages: [
         GetPage(

@@ -9,6 +9,7 @@ class AuthController extends GetxController {
   final Rxn<User> user = Rxn<User>();
   final Rxn<Profile> profile = Rxn<Profile>();
 
+
   fetchProfile(String uid) async {
     var res =
         await FirebaseFirestore.instance.collection('profile').doc(uid).get();

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "261698721960",
+    "project_id": "sfac-flutter",
+    "storage_bucket": "sfac-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261698721960:android:ec010c5dab56862a000a9d",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261698721960-n8j8cg2q77ch1k3ci7i92sralnbosfn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXPvAC4ZSGYV38jrQoNguE5julOQMt-E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261698721960-n8j8cg2q77ch1k3ci7i92sralnbosfn2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "261698721960-n765e2u1f5m1rvqu0ftb8ciepdv2o1hm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebase.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
