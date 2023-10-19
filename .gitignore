@@ -1,1 +1,5 @@
+*.exe
 
+.vscode
+
+firebase-tools-instant-win (1).exe
