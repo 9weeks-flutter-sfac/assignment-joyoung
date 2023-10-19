@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:assignment/controller/auth_controller.dart';
 import 'package:assignment/model/upload.dart';
 import 'package:assignment/pages/main_page.dart';
+import 'package:assignment/pages/secret_page.dart';
 import 'package:assignment/util/api_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,6 @@ class UploadController extends GetxController {
   Dio dio = Dio();
 
   Upload() async {
-    // if (record!.id == null) {
-    //   return;
-    // }
-    // print("record :" + record!.id.toString());
     dio.options.baseUrl = "http://52.79.115.43:8090";
     try {
       var res = await dio.post(ApiRoutes.ScretAdress, data: {
@@ -35,13 +32,7 @@ class UploadController extends GetxController {
       if (res.statusCode == 200) {
         var data = res.data;
         print(data);
-        Get.to(MainPage());
-        // List<UploadModel> userdata =
-        //     List<UploadModel>.from(data.map((e) => UploadModel.fromMap(e)));
-
-        // // print(userdata[1].secret);
-
-        // _upload(userdata);
+        Get.to(SecretPage());
       }
     } catch (e) {
       print(e);

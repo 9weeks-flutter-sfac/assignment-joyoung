@@ -62,24 +62,27 @@ class SecretPage extends GetView<SecretController> {
                             ),
                           ),
                           Text(
-                            secret.authorName != null &&
-                                    secret.authorName != ''
+                            secret.authorName != null && secret.authorName != ''
                                 ? secret.authorName + '의 비밀은..'
                                 : '누군가의 비밀은..',
                             textAlign: TextAlign.center,
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 20),
+                            style: TextStyle(color: Colors.grey, fontSize: 20),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(15.0), /////
+                            padding: const EdgeInsets.all(20.0), /////
                             child: Text(
                               secret.secret ??
                                   secret.secret, // 비밀 정보의 텍스트를 가져와 표시
                               textAlign: TextAlign.center,
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 30),
+                                  TextStyle(color: Colors.white, fontSize: 25),
                             ),
                           ),
+                          if (index == 0)
+                            Text(
+                              '앗 그런데 이건 나의 비밀이 아닌가?...',
+                              style: TextStyle(color: Colors.white),
+                            ),
                         ],
                       ),
                     );

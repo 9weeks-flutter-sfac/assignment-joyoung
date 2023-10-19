@@ -13,10 +13,9 @@ class UploadPage extends GetView<UploadController> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.transparent,
-          title: Text('뒤로가기' ,style: TextStyle(color: Colors.white)),
+          title: Text('뒤로가기', style: TextStyle(color: Colors.white)),
           centerTitle: false,
           elevation: 0,
         ),
@@ -24,7 +23,7 @@ class UploadPage extends GetView<UploadController> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('images/background/bamboo2.jpg'),
+                  image: AssetImage('images/background/meal.jpg'),
                   fit: BoxFit.cover,
                   colorFilter:
                       ColorFilter.mode(Colors.black26, BlendMode.color))),
@@ -34,7 +33,6 @@ class UploadPage extends GetView<UploadController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-        
                   TextField(
                     controller: controller.secretController,
                     minLines: 7,
@@ -45,12 +43,12 @@ class UploadPage extends GetView<UploadController> {
                   ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStatePropertyAll(Colors.lightGreen)),
+                              MaterialStatePropertyAll(Colors.brown)),
                       onPressed: controller.Upload,
                       child: Text(
-                        '대나무 숲에 외치기!',
+                        '고양이 사료와 함께 고양이와 비밀공유하기',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15),
                       ))
                 ]),
           ),
