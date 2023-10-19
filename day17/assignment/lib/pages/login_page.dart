@@ -13,38 +13,33 @@ class LoginPage extends GetView<LoginController> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("images/avatar/catmom.jpg"),
-              fit: BoxFit.fitWidth),
-        ),
         child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '사료주러 로그인',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            Input(
-              label: '이메일',
-              controller: controller.idController,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Input(
-              label: '비밀번호',
-              controller: controller.pwController,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(onPressed: controller.login, child: Text('login'))
-          ],
+            child: Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("images/avatar/catmom.jpg"),
+              Text(
+                '사료주러 로그인',
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              ),
+              Input(
+                label: '이메일',
+                controller: controller.idController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Input(
+                label: '비밀번호',
+                controller: controller.pwController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(onPressed: controller.login, child: Text('login'))
+            ],
+          ),
         )),
       ),
     );

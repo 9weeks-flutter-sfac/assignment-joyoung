@@ -23,9 +23,9 @@ class AuthorPage extends GetView<AuthorController> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/background/bamboo2.jpg'),
+            image: AssetImage('images/background/catsmile2.png'),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
+            colorFilter: ColorFilter.mode(Colors.black54, BlendMode.colorBurn),
           ),
         ),
         child: FutureBuilder(
@@ -45,13 +45,12 @@ class AuthorPage extends GetView<AuthorController> {
                         delay: Duration(milliseconds: 200 * index),
                         child: Column(
                           children: [
-                            if (snapshot.data![index].avatar != null)
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    NetworkImage(snapshot.data![index].avatar),
-                              ),
-                            if (snapshot.data![index].avatar == null)
+                            // if (snapshot.data![index].avatar != null)
+                            //   CircleAvatar(
+                            //     radius: 30,
+                            //     backgroundImage:
+                            //         NetworkImage(snapshot.data![index].avatar),
+                            //   ),
                               CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
@@ -61,7 +60,7 @@ class AuthorPage extends GetView<AuthorController> {
                               height: 10,
                             ),
                             Text(
-                              snapshot.data![index].collectionName ?? "Unknown",
+                              snapshot.data![index].id ?? "Unknown",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],

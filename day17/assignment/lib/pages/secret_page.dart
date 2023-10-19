@@ -43,7 +43,7 @@ class SecretPage extends GetView<SecretController> {
                   itemBuilder: (context, index) {
                     final secret = secretList[index];
                     return ZoomIn(
-                      duration: Duration(milliseconds: 2000),
+                      duration: Duration(milliseconds: 1000),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,20 +53,22 @@ class SecretPage extends GetView<SecretController> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white, fontSize: 11),
                           ),
-                          Image(
-                            height: 80,
-                            image: AssetImage('images/avatar/cecretcat.jpg'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              secret.authorName != null
-                                  ? secret.authorName + '가 이렇게 말했다..'
-                                  : '익명의 사람의 말했다',
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 20),
+                          ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(30.0), // 원하는 라운드 정도를 설정
+                            child: Image(
+                              height: 200,
+                              image: AssetImage('images/background/catmoo.jpg'),
                             ),
+                          ),
+                          Text(
+                            secret.authorName != null &&
+                                    secret.authorName != ''
+                                ? secret.authorName + '의 비밀은..'
+                                : '누군가의 비밀은..',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 20),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(15.0), /////

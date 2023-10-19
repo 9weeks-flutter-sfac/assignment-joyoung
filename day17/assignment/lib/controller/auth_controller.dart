@@ -5,6 +5,7 @@ import 'package:assignment/pages/signup_page.dart';
 import 'package:assignment/util/api_route.dart';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../pages/main_page.dart';
@@ -27,11 +28,29 @@ class AuthController extends GetxController {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     );
     if (emailRegExp.hasMatch(email) == false) {
+         Get.defaultDialog(
+        title: '이메일 오류',
+        buttonColor: Colors.white,
+        textCancel: '확인',
+        content: Text('이메일 양식에 맞게 수정해주세요'),
+        onCancel: () {
+          return;
+        },
+      );
       print('이메일 양식이 안맞음');
       return;
     }
     if (pw.length <= 8) {
       print('비밀번호 9자 미만');
+         Get.defaultDialog(
+        title: '비밀번호 오류',
+        buttonColor: Colors.white,
+        textCancel: '확인',
+        content: Text('비밀번호가 9자 미만입니다'),
+        onCancel: () {
+          return;
+        },
+      );
       return;
     }
     dio.options.baseUrl = "http://52.79.115.43:8090";
@@ -63,9 +82,26 @@ class AuthController extends GetxController {
     );
     if (emailRegExp.hasMatch(id) == false) {
       print('이메일 양식이 안맞음');
+      Get.defaultDialog(
+        title: '이메일 오류',
+        textCancel: '확인',
+        content: Text('이메일 양식에 맞게 입력 해주세요'),
+        onCancel: () {
+          return;
+        },
+      );
       return;
     }
     if (pw.length <= 8) {
+      Get.defaultDialog(
+        title: '비밀번호 오류',
+        buttonColor: Colors.white,
+        textCancel: '확인',
+        content: Text('비밀번호가 9자 미만입니다'),
+        onCancel: () {
+          return;
+        },
+      );
       print('비밀번호 9자 미만');
       return;
     }
@@ -81,7 +117,16 @@ class AuthController extends GetxController {
         _login.value = userdata;
       }
     } catch (e) {
-      print("에러");
+      Get.defaultDialog(
+        title: '로그인 실패',
+        buttonColor: Colors.white,
+        textCancel: '확인',
+        content: Text('아이디나 비밀번호가 틀렸습니다'),
+        onCancel: () {
+          return;
+        },
+      );
+
       print(e);
     }
   }
