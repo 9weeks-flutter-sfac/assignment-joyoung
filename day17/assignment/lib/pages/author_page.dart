@@ -67,7 +67,7 @@ class AuthorPage extends GetView<AuthorController> {
                         ),
                       );
                     }
-                    return SizedBox(); // Handle the case when data is null or index is out of range.
+                    return CircularProgressIndicator(); // Handle the case when data is null or index is out of range.
                   },
                 );
               } else {

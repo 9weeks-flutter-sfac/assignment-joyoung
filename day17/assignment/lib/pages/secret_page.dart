@@ -12,7 +12,7 @@ class SecretPage extends GetView<SecretController> {
   @override
   Widget build(BuildContext context) {
     // Obx(() => Text(secretList![0].secret));
-
+    
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -42,7 +42,7 @@ class SecretPage extends GetView<SecretController> {
                   itemCount: secretList.length,
                   itemBuilder: (context, index) {
                     final secret = secretList[index];
-                    return ZoomIn(
+                    return Bounce(
                       duration: Duration(milliseconds: 1000),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -61,6 +61,7 @@ class SecretPage extends GetView<SecretController> {
                               image: AssetImage('images/background/catmoo.jpg'),
                             ),
                           ),
+                          SizedBox(height: 20,),
                           Text(
                             secret.authorName != null && secret.authorName != ''
                                 ? secret.authorName + '의 비밀은..'
@@ -68,21 +69,28 @@ class SecretPage extends GetView<SecretController> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.grey, fontSize: 20),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0), /////
-                            child: Text(
-                              secret.secret ??
-                                  secret.secret, // 비밀 정보의 텍스트를 가져와 표시
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 25),
+                          ZoomIn(
+                            duration: Duration(seconds: 2),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(20.0), /////
+                                  child: Text(
+                                    secret.secret ??
+                                        secret.secret, // 비밀 정보의 텍스트를 가져와 표시
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white, fontWeight: FontWeight.bold,fontSize: 25),
+                                  ),
+                                ),
+                                if (index == 0)
+                                  Text(
+                                    '앗 그런데 이건 나의 비밀이 아닌가?...',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                              ],
                             ),
                           ),
-                          if (index == 0)
-                            Text(
-                              '앗 그런데 이건 나의 비밀이 아닌가?...',
-                              style: TextStyle(color: Colors.white),
-                            ),
                         ],
                       ),
                     );

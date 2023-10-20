@@ -23,12 +23,12 @@ class AuthController extends GetxController {
 
   Dio dio = Dio();
 
-  SignUp(String email, String pw, String username) async {
+  SignUp(String email, String pw, String? username) async {
     final emailRegExp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     );
     if (emailRegExp.hasMatch(email) == false) {
-         Get.defaultDialog(
+      Get.defaultDialog(
         title: '이메일 오류',
         buttonColor: Colors.white,
         textCancel: '확인',
@@ -42,7 +42,7 @@ class AuthController extends GetxController {
     }
     if (pw.length <= 8) {
       print('비밀번호 9자 미만');
-         Get.defaultDialog(
+      Get.defaultDialog(
         title: '비밀번호 오류',
         buttonColor: Colors.white,
         textCancel: '확인',

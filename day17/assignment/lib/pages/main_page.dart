@@ -19,17 +19,26 @@ class MainPage extends GetView<MainController> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
+            image: const DecorationImage(
                 image: AssetImage('images/background/bamboo.jpg'),
                 fit: BoxFit.cover)),
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.white38,
-                backgroundImage: AssetImage('images/avatar/woman.png')),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white38,
+                    backgroundImage: AssetImage('images/avatar/woman.png')),
+                CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white38,
+                    backgroundImage: AssetImage('images/avatar/girl.png')),
+              ],
+            ),
             SizedBox(
               height: 20,
             ),
